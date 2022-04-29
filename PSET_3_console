@@ -1,0 +1,56 @@
+R version 4.1.3 (2022-03-10) -- "One Push-Up"
+Copyright (C) 2022 The R Foundation for Statistical Computing
+Platform: x86_64-w64-mingw32/x64 (64-bit)
+
+R is free software and comes with ABSOLUTELY NO WARRANTY.
+You are welcome to redistribute it under certain conditions.
+Type 'license()' or 'licence()' for distribution details.
+
+R is a collaborative project with many contributors.
+Type 'contributors()' for more information and
+'citation()' on how to cite R or R packages in publications.
+
+Type 'demo()' for some demos, 'help()' for on-line help, or
+'help.start()' for an HTML browser interface to help.
+Type 'q()' to quit R.
+
+> library(readxl)
+> caschool <- read_excel("Econometrics/caschool.xlsx")
+> View(caschool)
+> income <- 1000*caschool$avginc
+> mean(caschool$avginc)
+[1] 15.31659
+> sd(caschool$avginc)
+[1] 7.22589
+> mean(income)
+[1] 15316.59
+> sd(income)
+[1] 7225.89
+> mean(caschool$math_scr)
+[1] 653.3426
+> smallSTR <- caschool$str[caschool$str <= 20]
+> largeSTR <- caschool$str[caschool$str > 20]
+> smallSTR <- caschool[caschool$str <= 20]
+Error:
+! Must subset columns with a valid subscript vector.
+i Logical subscripts must match the size of the indexed input.
+x Input has size 18 but subscript `caschool$str <= 20` has size 420.
+Run `rlang::last_error()` to see where the error occurred.
+> smallSTR_math_scr <- caschool$math_scr[caschool$str <= 20]
+> mean(smallSTR_math_scr)
+[1] 655.7177
+> largeSTR_math_scr <- caschool$math_scr[caschool$str > 20]
+> mean(largeSTR_math_scr)
+[1] 650.0819
+> var(largeSTR_math_scr)
+[1] 304.2563
+> var(smallSTR_math_scr)
+[1] 374.2519
+> cov(caschool$avginc, caschool$math_scr)
+[1] 94.7795
+> cov(income, caschool$math_scr)
+[1] 94779.5
+> cor(caschool$avginc, caschool$math_scr)
+[1] 0.6993981
+> cor(income, caschool$math_scr)
+[1] 0.6993981
